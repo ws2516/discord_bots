@@ -59,6 +59,6 @@ def google_search(query, term):
 
 @bot.command(name='coffee')
 async def coffee(ctx, message):
-    getCoffee = lifestyle.coffee_bot(message)
+    getCoffee = coffee_bot(message)
     response = getCoffee
     await ctx.send(response)
