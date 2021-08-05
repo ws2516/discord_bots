@@ -1,2 +1,2 @@
 web : gunicorn app:app
-worker : BotTester.py 
+worker : python BotTester.py 
