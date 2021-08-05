@@ -40,3 +40,5 @@ python_dotenv == 0.17.0
 # discord_bots/scrapers/finance.py: 1
 # discord_bots/scrapers/lifestyle.py: 1
 requests == 2.24.0
+
+tabulate==0.8.7
