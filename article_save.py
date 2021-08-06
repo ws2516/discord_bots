@@ -16,8 +16,7 @@ def write_to_sheet(article_title, article_url):
 	sheet = client.open("SavedArticles").sheet1
 	row = [article_title,str(article_url)]
 	sheet.append_row(row)
-	num = next_available_row(sheet)
-	return int(num)
+	return 'Done'
 
 #open timesheet
 def write_to_sheet_times(timed, typed, work):
