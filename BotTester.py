@@ -79,6 +79,7 @@ async def nyker(ctx, *, arg):
 @bot.command(name='clocking')
 async def timesheet(ctx, *, arg):
 	now = str(datetime.now())
+	typed = arg[1]
 	if typed == "in":
 		article_save.write_to_sheet_times(time.time(),'in')
 		print(f"You clocked {typed} at {now}")
