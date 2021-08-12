@@ -13,7 +13,7 @@ import article_save
 from article_save import write_to_sheet
 from article_save import on_sheet_grab
 from article_save import get_last_time
-from article_save import write_to_sheet_time
+from article_save import write_to_sheet_times
 
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -80,12 +80,12 @@ async def nyker(ctx, *, arg):
 async def timesheet(ctx, *, arg):
 	now = str(datetime.now())
 	if typed == "in":
-		write_to_sheet_time(time.time(),'in')
+		article_save.write_to_sheet_times(time.time(),'in')
 		print(f"You clocked {typed} at {now}")
 	elif typed == "out":
-		timer = get_last_time()
+		timer = article_save.get_last_time()
 		length = (time.time() - timer)/(60*60)
-		write_to_sheet_time(time.time(),'out')
+		article_save.write_to_sheet_times(time.time(),'out')
 		print(f"You clocked {typed} at {now} for a total of {length} hours.")
 	else:
 		print(f"Errr I didn't understand that.")
