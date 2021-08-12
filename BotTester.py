@@ -79,8 +79,6 @@ async def nyker(ctx, *, arg):
 @bot.command(name='clocking')
 async def timesheet(ctx, *, arg):
 	now = str(datetime.now())
-	helpers = pd.read_csv('time_logger.csv')
-	helper = list(helpers.values)
 	if typed == "in":
 		write_to_sheet_time(time.time(),'in')
 		print(f"You clocked {typed} at {now}")
