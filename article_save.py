@@ -25,8 +25,7 @@ def write_to_sheet_times(timed, typed):
 	sheet = client.open("TimeSheet").sheet1
 	row = [timed,typed]
 	sheet.append_row(row)
-	out = next_available_row(sheet)
-	return out
+	return 'Done'
 
 def get_last_time():
 	credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
