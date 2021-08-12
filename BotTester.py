@@ -3,13 +3,17 @@ import os
 import random
 import scrapers
 import datetime
+import time
 
 from datetime import datetime
 from scrapers import finance
 from scrapers import lifestyle
+
 import article_save
 from article_save import write_to_sheet
 from article_save import on_sheet_grab
+from article_save import get_last_time
+from article_save import write_to_sheet_time
 
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -75,17 +79,18 @@ async def nyker(ctx, *, arg):
 @bot.command(name='clocking')
 async def timesheet(ctx, *, arg):
 	now = str(datetime.now())
-	typed = arg[0]
-	work = arg[1]
-	if now == "in":
-		article_save.write_to_sheet_times(now, typed, work)
-		await ctx.send(f"You clocked {arg} at {now}")
-	elif now == "out":
-		length = datetime.timedelta(datetime(article_save.get_last_time()),datetime(now))
-		article_save.write_to_sheet_times(now, typed, work)
-		await ctx.send(f"You clocked {arg} at {now} for a total of {length} hours.")
+	helpers = pd.read_csv('time_logger.csv')
+	helper = list(helpers.values)
+	if typed == "in":
+		write_to_sheet_time(time.time(),'in')
+		print(f"You clocked {typed} at {now}")
+	elif typed == "out":
+		timer = get_last_time()
+		length = (time.time() - timer)/(60*60)
+		write_to_sheet_time(time.time(),'out')
+		print(f"You clocked {typed} at {now} for a total of {length} hours.")
 	else:
-		await ctx.send(f"Errr I didn't understand that.")
+		print(f"Errr I didn't understand that.")
 	
 
 bot.run(TOKEN)
